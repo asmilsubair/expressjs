@@ -1,21 +1,27 @@
 const connection = require('../db/db-connecton');
 
-
 const showClassForm = (req,res) => {
   
   res.sendFile(__dirname + "/forms/class.html");
-
+ 
 }
 
 const saveClass = (req, res)  => {
 
+
+  console.log(req.body);
   res.send('<h1>Save Class</h1>')
 
-// connection.query('INSERT INTO Class values(?,?,?)',[], (err, rows) => {
-//     if (err) throw err;
+  var classID = req.body.cid;
+  var grade = req.body.grade;
+  var className = req.body.className;
+   
+
+connection.query('INSERT INTO Class values(?,?,?)',[classID,grade,className], (err, rows) => {
+    if (err) throw err;
   
-//     res.send (rows);
-  // })
+     res.send (rows);
+   })
 
 
 }
