@@ -1,13 +1,22 @@
-
-
-
-
 const connection = require('../db/db-connecton');
 
+
+const showClassForm = (req,res) => {
+  
+  res.sendFile(__dirname + "/forms/class.html");
+
+}
 
 const saveClass = (req, res)  => {
 
   res.send('<h1>Save Class</h1>')
+
+// connection.query('INSERT INTO Class values(?,?,?)',[], (err, rows) => {
+//     if (err) throw err;
+  
+//     res.send (rows);
+  // })
+
 
 }
 
@@ -26,7 +35,7 @@ const getClass = (req, res)  => {
       console.error(err);
       res.status(500).send('Error fetching classes');
     } else {
-      res.send(rows['cid']);
+      res.send(rows);
     }
   });
 
@@ -47,4 +56,4 @@ const searchClass = (req, res)  => {
 
 }
 
-module.exports = {saveClass, getClass, updateClass, deleteClass,searchClass}
+module.exports = {saveClass, getClass, updateClass, deleteClass,searchClass,showClassForm}

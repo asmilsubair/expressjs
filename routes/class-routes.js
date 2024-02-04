@@ -3,8 +3,9 @@ const express = require('express');
 const router  = express.Router();
 
 // Import class methods
-const {getClass, saveClass, deleteClass, updateClass, searchClass} =  require("../controllers/class-controller.js")
+const {getClass, saveClass, deleteClass, updateClass, searchClass,showClassForm} =  require("../controllers/class-controller.js")
 
+router.get('/showClass',showClassForm);
 router.get('/',getClass);
 router.post('/insert',saveClass);
 router.delete('/:id', deleteClass);
