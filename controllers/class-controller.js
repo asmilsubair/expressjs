@@ -8,19 +8,18 @@ const showClassForm = (req,res) => {
 
 const saveClass = (req, res)  => {
 
-
-  console.log(req.body);
-  res.send('<h1>Save Class</h1>')
-
   var classID = req.body.cid;
   var grade = req.body.grade;
-  var className = req.body.className;
-   
+  var className = req.body.className;   
 
 connection.query('INSERT INTO Class values(?,?,?)',[classID,grade,className], (err, rows) => {
-    if (err) throw err;
-  
-     res.send (rows);
+   if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching classes');
+    } else {
+      res.send(rows);
+    }  
+
    })
 
 
